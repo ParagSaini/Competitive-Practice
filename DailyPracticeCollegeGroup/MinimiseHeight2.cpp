@@ -1,0 +1,5 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//https://practice.geeksforgeeks.org/problems/minimize-the-heights3351/1
+
