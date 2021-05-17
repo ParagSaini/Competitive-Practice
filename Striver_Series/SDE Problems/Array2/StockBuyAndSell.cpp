@@ -3,15 +3,15 @@ using namespace std;
 
 
 // Mine Approach.. 
+//keep track of the minimum value, to get the maximum profit.
+// t.c O(n) && s.c O(1)
 int maxProfit(vector<int>& prices) {
-    if(prices.size() == 0) return 0;
-    
-    int maxPro = 0;
     int mini = prices[0];
+    int maxPro = 0;
     for(int i=1; i<prices.size(); i++) {
-        int prof = prices[i] - mini;
-        if(prof > maxPro) maxPro = prof;
-        if(prices[i] < mini) mini = prices[i];
+        int curPrice = prices[i];
+        if(curPrice >= mini) maxPro = max(maxPro, curPrice - mini);
+        else mini = curPrice;
     }
     return maxPro;
 }

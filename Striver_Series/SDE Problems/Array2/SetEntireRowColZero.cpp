@@ -1,31 +1,47 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// errichto videos
-
- void setZeroes(vector<vector<int>>& matrix) {
-    int r = matrix.size();
-    int c = matrix[0].size();
-    bool first_row_have_zero = false;
-    for(int i=0; i<c; i++) {
-        if(matrix[0][i] == 0) first_row_have_zero = true;
-    }
+// t.c O(mn) s.c O(1), optimising the second  approach of s.c O(m+n)
+void setZeroes(vector<vector<int>>& matrix) {
+    int row = matrix.size(), col = matrix[0].size();
+    bool firstRowHasZero = false;
+    for(int i=0; i<col; i++) if(matrix[0][i] == 0) firstRowHasZero = true;
     
-    for(int i=0; i<r; i++) {
-        for(int j=0; j<c; j++) {
-            if(matrix[i][j] == 0) matrix[0][j] = 0;
+    for(int i=1; i<row; i++) {
+        for(int j=0; j<col; j++) {
+            if(matrix[i][j] == 0) {
+                matrix[0][j] = 0;
+                matrix[i][0] = 0;
+            }
         }
     }
-    
-    for(int i=1; i<r; i++){
-        bool row_have_zero = false;
-        for(int j=0; j<c; j++) {
-            if(matrix[i][j] == 0) row_have_zero = true;
-            if(matrix[0][j] == 0) matrix[i][j] = 0;
+    // traversing back is important because, on traversing front we can change the initial column value, which will create problem for further elements.
+    for(int i=row-1; i>=1; i--) {
+        for(int j=col-1; j>=0; j--) {
+            if(matrix[0][j] == 0 || matrix[i][0] == 0) matrix[i][j] = 0;
         }
-        if(row_have_zero) {
-            for(int j=0; j<c; j++) matrix[i][j] = 0;
-        }  
     }
-    if(first_row_have_zero) for(int i=0; i<c; i++) matrix[0][i] = 0;
+    if(firstRowHasZero) for(int i=0; i<col; i++) matrix[0][i] = 0;
 }
+
+// t.c O(mn), s.c O(m+n)
+void setZeroes(vector<vector<int>>& matrix){
+    int row = matrix.size(), col = matrix[0].size();
+    vector<int> arr1(col, 1);
+    vector<int> arr2(row,1);
+
+    for(int i=0; i<row; i++) {
+        for(int j=0; j<col; j++) {
+            if(matrix[i][j] == 0) {
+                arr1[j] = 0;
+                arr2[i] = 0;
+            }
+        }
+    }
+
+    for(int i=0; i<row; i++) {
+        for(int j=0; j<col; j++) {
+            if(arr1[j] == 0 || arr2[i] == 0) matrix[i][j] = 0;
+        }
+    }
+    }

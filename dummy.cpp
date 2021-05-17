@@ -2,6 +2,9 @@
 using namespace std;
 
 int main() {
-    cout<<"Hello saini is my name and not me "<<endl;
+    int a = 100000;
+    int b= 100000;
+    long long x = ((long long)a* b);
+    cout<<x;
     return 0;
 }

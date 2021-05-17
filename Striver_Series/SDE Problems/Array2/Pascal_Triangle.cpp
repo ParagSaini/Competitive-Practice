@@ -1,29 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// t.c O(n2) s.c O(n2)
 vector<vector<int>> generate(int numRows) {
     vector<vector<int>> result(numRows);
-    if(numRows <= 0) return result;
-    result[0].push_back(1);
-    
-    for(int i=1; i<numRows; i++) {
-        result[i].push_back(1);
-        int s = i;
-        // no. of element in ith row is (i+1).
-        while(--s) {
-            int index = result[i].size();
-            
-            int a = result[i-1][index];
-            int b = result[i-1][index-1];
-            
-            result[i].push_back(a+b);
+    for(int i=0; i<numRows; i++) {
+        result[i].resize(i+1);    // each row contains i+1 elements
+        result[i][0] = 1;
+        result[i][i] = 1;
+        for(int j=1; j<=i-1; j++) {    // from 1st column to second last column
+            result[i][j] = result[i-1][j-1] + result[i-1][j];
         }
-        result[i].push_back(1);
     }
-    
     return result;
 }
-
 int main() {
     int num = 5;
     vector<vector<int>> r = generate(num);
