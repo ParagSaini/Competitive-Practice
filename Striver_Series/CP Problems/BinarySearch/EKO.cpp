@@ -32,10 +32,6 @@ int main() {
 
 			long long htCut = suffixSum[ind] -  ( (long long)curBladeHt * numberOfTreeToCut);
 
-			if(htCut == (long long)m) {
-				cout<<curBladeHt<<endl;
-				break;
-			}
 			if(htCut < m) { // reduce the ht of blade, so that it cuts more.
 				e = curBladeHt-1;
 			} else {
@@ -44,6 +40,6 @@ int main() {
 			}
 		}
 	}
-	if(s > e) cout<<ans<<endl;
+	cout<<ans<<endl;
 	return 0;
 }
