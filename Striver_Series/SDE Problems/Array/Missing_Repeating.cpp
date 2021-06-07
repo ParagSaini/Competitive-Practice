@@ -23,7 +23,7 @@ int *findTwoElement(int *nums, int n) {
     int bucket2 = 0;    
     
     int set_bit_no = Xor & ~(Xor-1);       // rightmost set bit no.
-    // ~(Xor-1) == 2's compliment of Xor. ex Xor = 12(1100), 2s compliment = 0111, all digits reverted except the first set bit from right to left side.
+    // ~(Xor-1) == 2's compliment of Xor. ex Xor = 12(1100), 2s compliment = 0100, all digits reverted from the first set bit from right to left side.
     // ex if Xor = 12(1100), setbitno = 4(0100),
     
     for(int i=0; i<n; i++) {
