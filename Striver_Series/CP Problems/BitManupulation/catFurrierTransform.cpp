@@ -24,7 +24,7 @@ void countOperation(int n) {
     while( (num &(num+1)) != 0) {
         // find the leftmost unset bit pos.
         int l = leftMostUnsetBit(num);
-        num = ( num ^ ((int)pow(2,l) -1));
+        num = ( num ^ ((1<<l) -1));
         seq.push_back(l);
         operations++;
         if( (num&(num+1)) == 0) break;

@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 void solve(int n) {
-    int minFactor = -1;
+    int minFactor = -1;  // we can take any factor, not necessarily minimum one, but taking minimum value will make other steps easier.
     int a,b,c;
     for(int i=2; i<=sqrt(n); i++) {
         if((n%i) == 0) {

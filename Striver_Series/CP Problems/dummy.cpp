@@ -22,6 +22,9 @@ void solve(vector<int> arr) {
 		for(auto it : arr) cout<<it<<" ";
 	}
 }
+bool comp(int a, int b) {
+	return (a>b);
+}
 int main() {
 	// int t;
 	// cin>>t;
@@ -36,7 +39,15 @@ int main() {
 	// 	} else 
 	// 	solve(arr);
 	// }
-	long long x = pow(823,1);
-	cout<<x<<endl;
+	int x;
+	double y;
+	float z;
+	char ch;
+	char s[100];
+	// scanf("%lf", &y);
+	// cout<<y<<endl;
+	vector<int> arr = {1,3,5, 1,6,43};
+	sort(arr.begin(), arr.end(), greater<int>());
+	for(auto it : arr) cout<<it<<" ";
 	return 0;
 } 
