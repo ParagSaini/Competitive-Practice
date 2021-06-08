@@ -5,7 +5,6 @@ int countPairs(vector<int>& nums, int s1, int e1, int e2) {
     int pairs = 0;
     int s2 = e1+1;
     while((s1 <= e1) && (s2 <= e2)) {
-        // we have to covert to long long before comparing to avoid interger overflow..
         long long val1 = nums[s1], val2 = nums[s2];
         if(val1 > (2*val2)) {
             pairs += (e1-s1 + 1);
@@ -17,13 +16,9 @@ int countPairs(vector<int>& nums, int s1, int e1, int e2) {
     return pairs;
 }
 
-// this is the merge method same as merge sort and inversion of array question..
-
 int mergeAndCount(vector<int>& nums, int s1, int e1, int e2) {
     vector<int> sortArr;
     int start1 = s1, start2 = e1+1;
-    
-    // the only difference between inversion problem and this problem.
     int pairs = countPairs(nums, s1, e1, e2);
 
     while((start1 <= e1) && (start2 <= e2)) {
@@ -48,16 +43,18 @@ int mergeAndCount(vector<int>& nums, int s1, int e1, int e2) {
     return pairs;
 }
 
-int reversePairsHelper(vector<int>& nums, int s, int e) {
+int reversePairs(vector<int>& nums, int s, int e) {
     if(s >= e) return 0;
-    
-    int mid = (s+e)/2;
-    int l = reversePairsHelper(nums, s , mid);
-    int r = reversePairsHelper(nums, mid+1, e);
-    int m = mergeAndCount(nums, s, mid, e);
-    return (l+r+m);
+
+    int mid = (s + e)/2;
+    int a = reversePairs(nums, s, mid);
+    int b = reversePairs(nums, mid+1, e);
+    int c = mergeAndCount(nums, s, mid, e);
+    return (a+b+c);
 }
-int reversePairs(vector<int>& nums) {
-    if(nums.size() == 0 || nums.size() == 1 ) return 0;
-    return reversePairsHelper(nums, 0, nums.size()-1); 
+
+int main() {
+    vector<int> arr = {1,3,2,3,1};
+    cout<<reversePairs(arr, 0, arr.size()-1);
+    return 0;
 }

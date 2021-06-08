@@ -25,6 +25,12 @@ void solve(vector<int> arr) {
 bool comp(int a, int b) {
 	return (a>b);
 }
+class comp1{
+	public:
+	bool operator()(int a, int b) {
+		return (a>b);
+	}
+};
 int main() {
 	// int t;
 	// cin>>t;
@@ -39,15 +45,16 @@ int main() {
 	// 	} else 
 	// 	solve(arr);
 	// }
-	int x;
+	// int x;
 	double y;
 	float z;
 	char ch;
 	char s[100];
 	// scanf("%lf", &y);
 	// cout<<y<<endl;
-	vector<int> arr = {1,3,5, 1,6,43};
-	sort(arr.begin(), arr.end(), greater<int>());
-	for(auto it : arr) cout<<it<<" ";
+	priority_queue<int, vector<int> , comp1> heap;
+	heap.push(4);
+	heap.push(22);
+	cout<<heap.top()<<endl;
 	return 0;
 } 
