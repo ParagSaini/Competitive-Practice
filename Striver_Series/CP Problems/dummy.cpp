@@ -49,12 +49,11 @@ int main() {
 	double y;
 	float z;
 	char ch;
+	long long x;
 	char s[100];
-	// scanf("%lf", &y);
-	// cout<<y<<endl;
-	priority_queue<int, vector<int> , comp1> heap;
-	heap.push(4);
-	heap.push(22);
-	cout<<heap.top()<<endl;
+	// scanf("%lld", &x);
+	// cout<<x<<endl;
+	;
+	cout<<(long long)pow(2,63)-1<<endl<<LLONG_MAX;
 	return 0;
 } 

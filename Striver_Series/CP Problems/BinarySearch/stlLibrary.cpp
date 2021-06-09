@@ -18,6 +18,7 @@ int main() {
     // lower_bound returns the address of the element equal to the given val or just greater than the given val if val is not present. 
     // lower_bound - a gives the index of the element.
     // if the given key is greater than maxVal in the array, then it points to the just next address block, with garbage value and index of n.
+    // if there are duplicate key present in the array it will give the address of element with smallest index.
     // logn time complexity
     int l1 = lower_bound(a, a+n, 4) - a;  
     int l2 = *lower_bound(a, a+n, 7);  

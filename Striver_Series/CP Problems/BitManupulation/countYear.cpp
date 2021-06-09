@@ -1,5 +1,31 @@
 #include<bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+
+void getReqNums(vector<ll>& arr) {
+    // we choose 62 because ll 2^63-1 and according to constraints a,b <= 10^18, therfore 62 will cover all the possible numbers.
+    for(int i=1; i<=62; i++) {
+        ll n = (1LL<<i)-1LL;
+        for(int j=0; j<=(i-2); j++) {
+            ll x = (n - (1LL<<j));
+            arr.push_back(x);
+        }
+    }
+}
+int main() {
+    ll a, b;
+    cin>>a>>b;
+    ll cnt = 0;
+    vector<ll> reqNums;
+    getReqNums(reqNums);
+    for(int i=0; i<reqNums.size(); i++) {
+        if((reqNums[i] >= a) && (reqNums[i] <= b)) {
+            cnt++;
+        }
+    }
+    cout<<endl<<cnt<<endl;
+    return 0;
+}
 
 int main() {
     long long a, b;

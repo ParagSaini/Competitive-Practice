@@ -2,8 +2,10 @@
 using namespace std;
 
 int main() {
-    int xorr = 6;
-    int x = (~(xorr-1));
-    cout<<(~5)<<endl;
+    int xorr = 1;
+    for(int i=2; i<= 1000; i++) {
+        xorr ^= i;
+        cout<<xorr<<" ";
+    }
     return 0;
 }
