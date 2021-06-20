@@ -41,8 +41,7 @@ long long findBeauty(string str) {
 
         int windowLen = (i*i) + i;  // window length
         // traversing the window.     
-        for(int endInd=windowLen-1; endInd<n; endInd++) {
-            int startInd = endInd-windowLen+1;
+        for(int endInd=windowLen-1, startInd = 0; endInd<n; endInd++, startInd++) {
             int isZero = str[startInd] == '0' ? 1 : 0;
             int cnt0 = prefixZeroes[endInd] - prefixZeroes[startInd] + isZero;
             int cnt1 = windowLen - cnt0;

@@ -1,5 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
+int n = 3, m = 4;
+vector<vector<int>> arr(n, vector<int>(4, -1)); // creates 2d matrix of n*m with all element == -1.
+
+// below creates the 3d matrix with all value == -1.
+vector<vector<vector<int>>> dp(a.length(), vector<vector<int>>(b.length(), vector<int>(c.length(), -1)));
 
 // MAKE PAIR IS SAME AS WE DID USING THE CURLY BRACKET, BUT SOME COMPILER GIVE ERROR WHEN USING CURLY BRACKET.
 vector<pair<int, int>> ar = {{1,2}, {3,2}};

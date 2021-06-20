@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// t.c O(n) && s.c O(n)       // not in the problem set, there are much more tougher in the sheet.
+// t.c O(n) && s.c O(n)       // not in the problem set, there is much more tougher in the sheet.
 vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     deque<int> dq;
     vector<int> ans;

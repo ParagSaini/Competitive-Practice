@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 void solve(vector<int> arr) {
 	int n = arr.size();
 	unordered_set<int> repeat;
@@ -46,14 +47,32 @@ int main() {
 	// 	solve(arr);
 	// }
 	// int x;
+	// #ifndef ONLINE_JUDGE
+	// freopen("input.txt", "r", stdin);
+	// freopen("output.txt", "w", stdout);
+	// #endif
+
 	double y;
 	float z;
 	char ch;
-	long long x;
+	// long long x;
 	char s[100];
 	// scanf("%lld", &x);
 	// cout<<x<<endl;
-	;
-	cout<<(long long)pow(2,63)-1<<endl<<LLONG_MAX;
+	int** arr = new int* [20];
+	for(int i=0; i<20; i++) {
+		arr[i] = new int[20];
+	}
+	for(int i=0; i<20; i++) {
+		for(int j=0; j<20; j++) {
+			arr[i][j] = i+j;
+		}
+	}
+	for(int i=0; i<20; i++) {
+		for(int j=0; j<20; j++) {
+			cout<<arr[i][j]<<" ";
+		}
+		cout<<endl;
+	}
 	return 0;
 } 
