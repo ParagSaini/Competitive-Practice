@@ -10,12 +10,15 @@ void solve() {
 	int res = 0;
 	for(int i=0; i< n; i++) {
 		cin>>arr[i];
-		for(auto ch : arr[i]) {
-			res ^= (ch-'0');
+	}
+	// whichever sequence we fold the matrix, the end result of the matrix will be the xor of all the elements. visualise it for betttr understanding.
+	for(int i=0; i<n; i++) {
+		for(int j= 0; j<m; j++) {
+			res ^= (arr[i][j] - '0');
 		}
 	}
-	if(!res) cout<<"NO"<<endl;
-	else cout<<"YES"<<endl;
+	if(res) cout<<"YES"<<endl;
+	else cout<<"NO"<<endl;
 }
 
 void init_code() {

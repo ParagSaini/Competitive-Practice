@@ -1,29 +1,35 @@
+// https://codeforces.com/contest/1539/problem/C
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 typedef pair<int, int> p32;
 
-ll solve(vector<ll> arr, ll k, ll x, ll s) {
-	int n = arr.size();
-	if(k < 0) return INT_MAX;
-	if(s >= (n-1)) return 1;
+void solve() {
+	ll n, k, x;
+	cin>>n>>k>>x;
+	vector<ll> arr(n);
+	for(int i=0; i<n; i++) cin>>arr[i];
+	sort(arr.begin(), arr.end());
 
-	ll ans1 = INT_MAX	, ans2 = INT_MAX;
-	int i;
-	for(i=s; i<n; i++) {
+	vector<ll> studentNeeded;
+	for(int i=1; i<n; i++) {
 		ll diff = arr[i] - arr[i-1];
 		if(diff > x) {
-			ans1 = 1 + solve(arr, k, x, i+1);
-		
-			ll needed = ceil((arr[i] - arr[i-1])/(double)x);
-			needed--;
-			// cout<<needed<<" ";
-			ans2 = solve(arr, k-needed, x, i+1);
-			break;
+			ll needed = ceil((arr[i] - arr[i-1])/(double)x) - 1;
+			studentNeeded.push_back(needed);
 		}
 	}
-	if(i == n) return 1;
-	return min(ans1, ans2);
+	sort(studentNeeded.begin(), studentNeeded.end());   // to join the maximum number of groups using k students.
+
+	ll ans = studentNeeded.size()+1;   // we can make atmost size+1 groups, without adding any students
+	for(auto needed: studentNeeded) {
+		k -= needed;
+		if(k >= 0) {
+			ans--;
+		} else break;
+	}
+	cout<<ans<<endl;
 }
 
 void init_code() {
@@ -40,13 +46,7 @@ int main() {
 	// cin>>t;
 	t = 1;
 	while(t--) {
-		ll n, k, x;
-		cin>>n>>k>>x;
-		vector<ll> arr(n);
-		for(int i=0; i<n; i++) cin>>arr[i];
-		sort(arr.begin(), arr.end());
-
-		cout<<solve(arr, k, x, 1);
+		solve();
 	}
 	return 0;
 }
