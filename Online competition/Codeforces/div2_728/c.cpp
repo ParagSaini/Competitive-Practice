@@ -5,7 +5,7 @@ typedef pair<int, int> p32;
 const int mod = 1000000007;
 
 void solve() {
-
+	
 }
 
 void init_code() {

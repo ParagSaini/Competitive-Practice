@@ -12,6 +12,7 @@ vector<int> shortestPath(int src, unordered_map<int, vector<pair<int, int>>> gra
     dist[src] = 0; // we are starting from the source itself, thats because 0.
     // MAKE PAIR IS SAME AS WE DID USING THE CURLY BRACKET, BUT SOME COMPILER GIVE ERROR WHEN USING CURLY BRACKET.
     setds.insert(make_pair(0,src));
+
     while(!setds.empty()) {
         pair<int, int> minWeightNode = *(setds.begin());
         // go to adjacent nodes 
@@ -19,6 +20,7 @@ vector<int> shortestPath(int src, unordered_map<int, vector<pair<int, int>>> gra
             int adjNode = it.second;
             int adjDist = it.first;
             int curDis = minWeightNode.first + adjDist;
+            
             if(curDis < dist[adjNode]) {
                 if(dist[adjNode] != INT_MAX) {
                     setds.erase({dist[adjNode], adjNode});

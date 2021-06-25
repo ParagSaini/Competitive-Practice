@@ -15,6 +15,9 @@ void init_code() {
 }
 int main() {
 	init_code();
-	 	
+	int gcd(int a, int b) {
+		if(a == 0) return b;
+		return gcd(b%a, a);
+	}
 	return 0;
 }

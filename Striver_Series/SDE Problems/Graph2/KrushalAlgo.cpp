@@ -67,6 +67,7 @@ int main()
 	graph.push_back(graphEdge(6,5,2));
 	graph.push_back(graphEdge(8,2,2));
 	graph.push_back(graphEdge(7,6,1));
+	
 	sort(graph.begin(), graph.end(), compare);
 	// for(int i=0; i<graph.size(); i++) cout<<graph[i].weight<<" ";
 	vector<graphEdge> MinSpanTree= minSpan(graph, v);

@@ -39,7 +39,7 @@ void init_code() {
 	#endif
 }
 int main() {
-	
+	 	
 	init_code();
 	int t;
 	// cin>>t;
