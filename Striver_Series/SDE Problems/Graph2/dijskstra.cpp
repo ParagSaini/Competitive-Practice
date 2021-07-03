@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
-// see striver video , https://www.youtube.com/watch?v=eKsJUlWwxic
-// t.c O(mlog(n)), m -- edge, n-- vertices
+// see striver video , https://www.youtube.com/watch?v=jbhuqIASjoM
+// t.c O((n+m)log(n)), m -- edge, n-- vertices
 // s.c O(m + n)
 // vertices from 0 to n;
 vector<int> shortestPath(int src, unordered_map<int, vector<pair<int, int>>> graph )

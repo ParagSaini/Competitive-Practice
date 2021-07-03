@@ -1,21 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-typedef pair<ll, ll> p32;
-const ll mod = 1000000007;
-vector<vector<pair<ll, ll>>> edges;
-ll n, m;
+typedef pair<int, int> p32;
+const int mod = 1000000007;
+
+vector<vector<pair<int, int>>> edges;
+int n, m;
 
 void dijsktra() {
 	set<pair<ll, ll>> setds;   // for getting node in ascending order of their weight till now.
 	vector<ll> dist(n+1, LLONG_MAX);
+	vector<int> parent(n+1);
+	parent[1] = -1;
 
 	dist[1] = 0;     // starting from node 1.
 	setds.insert(make_pair(0, 1));
-
 	while(!setds.empty()) {
 		pair<ll, ll> minWeightNode = (*setds.begin());
-		setds.erase(minWeightNode);
+		setds.erase(minWeightNode);  
 
 		for(auto child : edges[minWeightNode.second]) {
 			ll node = child.first;
@@ -26,21 +28,36 @@ void dijsktra() {
 				if(dist[node] != LLONG_MAX) {
 					setds.erase(make_pair(dist[node], node));
 				}
+				parent[node] = minWeightNode.second;
 				dist[node] = tillDist; 	 
 				setds.insert(make_pair(tillDist, node));
 			}
 		}
+
 	}
 
-	for(ll i=1; i<=n; i++) printf("%lld ", dist[i]);
+	if(dist[n] == LLONG_MAX) cout<<-1<<endl;
+	else {
+		int node = n;
+		vector<int> path;
+		path.push_back(n);
+		while(parent[node] != -1) {
+			path.push_back(parent[node]);
+			node = parent[node];
+		}
+		reverse(path.begin(), path.end());
+		for(auto p : path) printf("%d ", p);
+	}
 }
+
 void solve() {
-	cin>>n>>m;
+	scanf("%d %d", &n, &m);
 	edges.resize(n+1);
-	for(ll i=0; i<m; i++) {
-		ll s, d, w;
-		scanf("%lld %lld %lld", &s, &d, &w);
+	for(int i=0; i<m; i++) {
+		int s, d, w;
+		scanf("%d %d %d", &s, &d, &w);
 		edges[s].push_back(make_pair(d, w));
+		edges[d].push_back(make_pair(s, w));
 	}
 	dijsktra();
 }
@@ -55,7 +72,7 @@ int main() {
 	
 	init_code();
 
-	ll t;
+	int t;
 	// cin>>t;
 	t = 1;
 	while(t--) {
