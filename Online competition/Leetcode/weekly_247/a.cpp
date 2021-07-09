@@ -1,6 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+typedef pair<int, int> p32;
 const int mod = 1000000007;
+
+void solve() {
+	cout<<"HI"<<endl;
+}
 
 void init_code() {
 	#ifndef ONLINE_JUDGE
@@ -8,19 +14,14 @@ void init_code() {
 	freopen("output.txt", "w", stdout);
 	#endif
 }
-
 int main() {
-	// init_code();
 	
+	init_code();
 
-	double y;
-	float z;
-	char ch;
-	// long long x;
-	char s[100];
-	// scanf("%lld", &x);
-	// cout<<x<<endl;
-	string a, b;
-	
+	int t;
+	cin>>t;
+	while(t--) {
+		solve();
+	}
 	return 0;
-} 
+}

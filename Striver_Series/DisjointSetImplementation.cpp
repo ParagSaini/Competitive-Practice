@@ -15,7 +15,7 @@ class disjointSet{
 	void setUnion(int val1, int val2) {
 		int leader1 = find(val1);
 		int leader2 = find(val2);
-		if(leader1 != leader2) ar[leader2] = val1;
+		if(leader1 != leader2) ar[leader2] = leader1;
 	}
 	void printSet() {
 		for(int i=0; i<ar.size(); i++) cout<<ar[i]<<" ";

@@ -3,14 +3,13 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> p32;
 
-int countBelow(int n, vector<vector<int>>& m, vector<int>& ans) {
-    if(m[n].empty()) return 0;
+int countBelow(int node, vector<vector<int>>& edges, vector<int>& ans) {
     int cnt = 0;
-    for(auto it : m[n]) {
-        cnt += countBelow(it, m, ans);
+    for(auto it : edges[node]) {
+        cnt += (1 + countBelow(it, edges, ans));
     }
-    ans[n] = cnt + m[n].size();
-    return ans[n];
+    ans[node] = cnt;
+    return ans[node];
 }
 int main() {
     #ifndef ONLINE_JUDGE

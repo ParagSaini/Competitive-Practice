@@ -67,9 +67,9 @@ int main() {
 
 
 	map<A, int, Comp> my;
-    my[A(1,2,3)] = 3;
-    my[A(2,3,5)] = 32;
-    my[A(3,4,5)] = 3;
+    my.insert({A(1,2,3), 3});
+	my.insert({A(2,3,5), 32});
+	my.insert({A(3,4,3), 3});
     for(auto it : my) cout<<it.first.a<<" "<<it.second<<endl;
 
 
@@ -84,11 +84,11 @@ int main()
 	vector<int> v;
 	v.push_back(3);
 	unordered_map<int ,int> mymap;
-	mymap[3]=2;
-	mymap[3]=34;
-	mymap[4]=1;
-	mymap[5]=232;
-	mymap[34]=32;
+
+	mymap.insert({3,2});
+	mymap.insert({3,34});
+	mymap.insert({4,1});
+
 	mymap.count(5);
 	map<string,int> map1;
 	map1["parag"] = 443;
@@ -120,17 +120,44 @@ int main()
     s.insert(1);
     s.insert(2);
     s.insert(0);
+    auto it = s.lower_bound(2);
+    auto it = s.upper_bound(2);
+    if(it != s.end()) cout<<(*it)<<endl;
+
+    
     cout<<s.count(32)<<endl;
     cout<<s.erase(82)<<endl;
     map<int, int, greater<int>> x;
-    x[1] = 3;
-    x[5] = 13;
-    x[21] = 32;
+    x.insert({1, 3});
+    x.insert({5, 13});
+
+   	auto it = x.upper_bound(3);
+   	auto it2 = x.lower_bound(2);
+   	if(it != x.end()) cout<<(it->second)<<endl;
+
     cout<<x.count(21)<<endl;
     cout<<x.erase(21)<<endl;
     for(auto k: s) cout<<k<<" ";
     cout<<endl;
     for(auto k : x) cout<<k.first<< " "<<k.second<<endl;
+
+
+    // same we can do with the unordered_multiset, and unordered_multimap
+    multiset<int> x;
+	x.insert(2);
+	x.insert(2);
+	x.insert(3);
+	x.erase(x.find(2));   // erase only 1 instance of the '2'.
+	for(auto it : x) cout<<it<<" ";
+	multimap<int, int> mm;
+	mm.insert({1,3});
+	mm.insert({1,4});
+	cout<<mm.count(1)<<" ";  // gives '2' 
+	mm.erase(mm.find(1));   // remove only 1 instance of the '1'
+	// mm.erase(1);        // remove all the instance of the value '1'
+	cout<<mm.size()<<endl;
+
+	
 	getch();
 	return 0;
 }
