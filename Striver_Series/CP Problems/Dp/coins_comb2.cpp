@@ -4,34 +4,27 @@ typedef long long ll;
 typedef pair<int, int> p32;
 const int mod = 1000000007;
 
-int n, sum;
-// vector<int> coins(100);
-int coins[100];
-// vector<vector<int>> dp(100, vector<int>(1e6+1, -1));
-int dp[101][1000010];
+int findWays(int ind, vector<int>& coins, int sum, vector<vector<int>>& dp) {
 
-int recurhelper(int ind, int curSum) {
-	if(curSum == 0) return 1;
-	if(ind >= n) return 0;
+	if(sum == 0) return 1;
+	if(ind >= coins.size() || sum < 0) return 0;
 
-	if(dp[ind][curSum] != -1) return dp[ind][curSum];
+	if(dp[ind][sum] != -1) return dp[ind][sum];
 
-	int cnt = 0;	
-	for(int i=ind; i<n; i++) {
-		if(curSum >= coins[i]) {
-			int ans = recurhelper(i, curSum - coins[i]);
-			cnt = (cnt + ans) % mod;
-		}
-	}
-	dp[ind][curSum] = cnt;
-	return dp[ind][curSum];
+	int include = findWays(ind, coins, sum - coins[ind], dp) % mod;
+	int notInclude = findWays(ind+1, coins, sum, dp) % mod;
+
+	dp[ind][sum] = (include + notInclude) % mod;
+	return dp[ind][sum];
 }
-void solve() {
 
-	scanf("%d %d", &n, &sum);
-	memset(dp, -1, sizeof(dp));
-	for(int i=0; i<n; i++) scanf("%d", &coins[i]);
-	printf("%d \n", recurhelper(0, sum));
+void solve() {
+	int n, sum ;
+	cin>>n>>sum;
+	vector<int> coins(n);
+	vector<vector<int>> dp(n, vector<int>(sum + 10, -1));
+	for(int i=0; i<n; i++) cin>>coins[i];
+	cout<<findWays(0, coins, sum, dp);
 }
 
 void init_code() {
@@ -41,9 +34,6 @@ void init_code() {
 	#endif
 }
 int main() {
-	ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
 	init_code();
 
 	int t;

@@ -1,31 +1,33 @@
 #include<bits/stdc++.h>
 using namespace std;
-// overall t.c O(n+m) && s.c O(m) for kmp Array
-vector<int> KmpArray(string& pat) {
+// Kmp lpsay contanins the len of the prefix which is also the suffix at each index.
+// overall t.c O(n+m) && s.c O(m) for kmp lps(longest prefix suffix)
+vector<int> LpsArray(string& pat) {
     int len = pat.length(); 
-    vector<int> arr(len);
-    arr[0] = 0;
+    vector<int> lps(len);
+    lps[0] = 0;
     int i=0, j=1;
     while(j < len) {
         // there is a match
         if(pat[i] == pat[j]) {
-            arr[j] = i+1;
+            lps[j] = i+1;
             i++;
             j++;
         }else if(i == 0){
-            arr[j] = 0;
+            lps[j] = 0;
             j++;
         }else {
-            i = arr[i-1]; 
+            i = lps[i-1]; 
         }
     }
-    return arr;
+    // for(auto it : lps) cout<<it<<" ";
+    return lps;
 }
 int strStr(string str, string pat) {
     int l1 = str.length();
     int l2 = pat.length();
     if(l2 == 0) return 0;
-    vector<int> kmpArr = KmpArray(pat);
+    vector<int> lps = LpsArray(pat);
     int i = 0, j = 0;
     
     while(i < l1) {
@@ -35,7 +37,7 @@ int strStr(string str, string pat) {
         }else if(j == 0) {
             i++;
         } else {
-            j = kmpArr[j-1];
+            j = lps[j-1];
         }
     }
     return -1;
@@ -43,7 +45,7 @@ int strStr(string str, string pat) {
 
 int main() {
     string str = "my name is parag saini and i am name is parag saini";
-    string pat = "ara";
+    string pat = "aacecaaaa";
     cout<<strStr(str, pat);
     return 0;
 }
